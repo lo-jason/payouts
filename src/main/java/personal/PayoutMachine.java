@@ -144,11 +144,10 @@ public class PayoutMachine {
         PayoutBatch batch = null;
 
         try {
-            // TODO Get clientID and secret
             APIContext apiContext = new APIContext(clientId, clientSecret, mode);
 
-            // ###Create Batch Payout
-            batch = payout.create(apiContext, new HashMap<String, String>());
+            // Create Batch Payout
+            batch = payout.create(apiContext, new HashMap<>());
 
             System.out.println("Payout Batch With ID: " + batch.getBatchHeader().getPayoutBatchId());
             System.out.println("Payout Batch Create\n"
