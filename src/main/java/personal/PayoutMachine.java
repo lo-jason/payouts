@@ -74,10 +74,10 @@ public class PayoutMachine {
     }
 
     private static void printUsage(String s) {
-        if (isStringEmpty(s)) {
+        if (!isStringEmpty(s)) {
             System.out.println(s + "\n");
         }
-        System.out.println("Usage: java -jar payoutmachine.jar <csvfile> --<live|sandbox>");
+        System.out.println("Usage: java -jar payout.jar <csvfile> --<live|sandbox>");
         System.out.println(String.format("Expects columns: %s, %s, %s", E_MAIL, PAYOUT, PO_NUMBER));
         System.out.println("");
         System.out.println("REQUIRED Arguments");
