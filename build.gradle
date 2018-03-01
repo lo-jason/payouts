@@ -1,18 +1,32 @@
 group 'jlo'
 
-apply plugin: 'java'
-apply plugin: 'idea'
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "com.github.jengelman.gradle.plugins:shadow:2.0.2"
+    }
+}
 
-sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
 }
 
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'com.github.johnrengelman.shadow'
+
+sourceCompatibility = 1.8
+
+
 jar {
     manifest {
         attributes(
-                'Main-Class': 'todo'
+                'Main-Class': 'personal.PayoutMachine'
         )
     }
 }
@@ -21,8 +35,15 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
     compile 'com.paypal.sdk:rest-api-sdk:+'
     compile 'org.apache.commons:commons-csv:1.5'
+    compile 'org.slf4j:slf4j-simple:+'
 }
 
 task wrapper(type: Wrapper) {
     gradleVersion = '4.5.1'
+}
+
+shadowJar {
+    baseName = "payout"
+    classifier = null
+    version = null
 }
